@@ -54,6 +54,38 @@ function storedata(){
         state: document.getElementById("states").value,
         city: document.getElementById("cities").value
     };
+    
+    document.getElementById("demo").textContent = JSON.stringify(formdata);
+    return formdata
+}
 
-    document.getElementById("demo").textContent = JSON.stringify(formdata, null, 2);
+function loadData() {
+  const dtable = document.getElementById('dtable');
+  const formdata = storedata();
+
+  dtable.innerHTML = '';
+
+  const headerRow = dtable.insertRow(0);
+  const headerCell1 = headerRow.insertCell(0);
+  const headerCell2 = headerRow.insertCell(1);
+  headerCell1.textContent = 'Field';
+  headerCell2.textContent = 'Value';
+
+  const rows = [
+    ['Name', formdata.name],
+    ['Email', formdata.email],
+    ['Gender', formdata.gender],
+    ['Hobbies', formdata.hobbies.join(', ')],
+    ['Country', formdata.country],
+    ['State', formdata.state],
+    ['City', formdata.city]
+  ];
+
+  rows.forEach(([label, value]) => {
+    const row = dtable.insertRow();
+    const cell0 = row.insertCell(0);
+    const cell1 = row.insertCell(1);
+    cell0.textContent = label;
+    cell1.textContent = value || '—';
+  });
 }
