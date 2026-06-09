@@ -100,11 +100,6 @@
         </div>
 
         <div class="form-group">
-            <label>Age</label>
-            <input type="number" id="age">
-        </div>
-
-        <div class="form-group">
             <label>State</label>
             <select id="state">
                 <option value="">Select State</option>
@@ -118,7 +113,6 @@
             <label>City</label>
             <select id="city">
                 <option value="">Select City</option>
-                <option>Navsari</option>
                 <option>Surat</option>
                 <option>Ahmedabad</option>
             </select>
@@ -144,44 +138,5 @@
             <tbody></tbody>
         </table>
     </div>
-
-</div>
-
-<script>
-function saveData() {
-
-    let name = document.getElementById("name").value;
-    let email = document.getElementById("email").value;
-    let age = document.getElementById("age").value;
-    let state = document.getElementById("state").value;
-    let city = document.getElementById("city").value;
-
-    let gender = document.querySelector('input[name="gender"]:checked');
-    gender = gender ? gender.value : "";
-
-    let hobbies = [];
-    document.querySelectorAll(".hobby:checked").forEach(h => {
-        hobbies.push(h.value);
-    });
-
-    let row = `
-        <tr>
-            <td>${name}</td>
-            <td>${email}</td>
-            <td>${gender}</td>
-            <td>${hobbies.join(", ")}</td>
-            <td>${age}</td>
-            <td>${state}</td>
-            <td>${city}</td>
-        </tr>
-    `;
-
-    document.querySelector("#userTable tbody")
-            .insertAdjacentHTML("beforeend", row);
-
-    document.querySelector("form")?.reset();
-}
-</script>
-
 </body>
 </html>
