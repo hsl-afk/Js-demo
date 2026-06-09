@@ -2,40 +2,42 @@
 <html>
 <head>
     <title>Simple Form</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="myscripts.js"></script>
 </head>
 <body>
 <table border="1" cellspacing="1" cellpadding="5">
     <tr>
         <td>Name</td>
-        <td><input type="text" cols="40"></td>
+        <td><input id="name" type="text" cols="40" onchange="storedata()"></td>
     </tr>
 
     <tr>
         <td>Email</td>
-        <td><input type="email" cols="40"></td>
+        <td><input id="email" type="email" cols="40" onchange="storedata()"></td>
     </tr>
 
     <tr>
         <td>Gender</td>
         <td>
-            <input type="radio" name="gender"> Male
-            <input type="radio" name="gender"> Female
+            <input type="radio" name="gender" value="Male"> Male
+            <input type="radio" name="gender" value="Female"> Female
         </td>
     </tr>
 
     <tr>
         <td>Hobby</td>
         <td>
-            <input type="checkbox"> Reading
-            <input type="checkbox"> Travelling
-            <input type="checkbox"> Sports
+            <input type="checkbox" name="hobby" value="Reading"> Reading
+            <input type="checkbox" name="hobby" value="Travelling"> Travelling
+            <input type="checkbox" name="hobby" value="Sports"> Sports
         </td>
     </tr>
 
     <tr>
         <td>Country</td>
         <td>
-            <select id="countries" onchange="updatestates()">
+            <select class="shortenedSelect" id="countries" onchange="updatestates()">
                 <option>Select</option>
                 <option>India</option>
                 <option>USA</option>
@@ -47,7 +49,7 @@
         <td>State</td>
         <td>
             <label for="states">Choose a State:</label>
-            <select id="states" onchange="updatecities()">
+            <select class="shortenedSelect" id="states" onchange="updatecities()">
                 <option>Select</option>
                 <option>Gujarat</option>
                 <option>Maharashtra</option>
@@ -59,7 +61,7 @@
         <td>City</td>
         <td>
             <label for="cities">Choose a City:</label>
-            <select id="cities">
+            <select class="shortenedSelect" id="cities">
                 <option>Select</option>
                 <option>Surat</option>
                 <option>Ahmedabad</option>
@@ -71,58 +73,10 @@
     <tr>
         <td>Action</td>
         <td>
-            <button>Save</button>
+            <button type="button" onclick="storedata()">Save</button>
         </td>
     </tr>
 </table>
-
-<script>
-
-    const statesbycountry = {
-        India: ["Gujarat", "Maharashtra"],
-        USA: ["California", "Texas"]
-    };
-
-    const citiesbystates = {
-        Gujarat: ["Surat", "Ahmedabad", "Navsari"],
-        Maharashtra: ["Mumbai", "Pune"],
-        California: ["Los Angeles", "San Francisco"],
-        Texas: ["Houston", "Dallas"]
-    };
-
-    function updatestates(){
-        const selectedcountry = document.getElementById("countries");
-        const selectedstate = document.getElementById("states");
-        const countryselected = selectedcountry.value;
-
-        selectedstate.innerHTML = '<option value="">Select</option>';
-
-        if(countryselected && statesbycountry[countryselected]){
-            statesbycountry[countryselected].forEach(state => {
-                const option = document.createElement("option");
-                option.value = state;
-                option.textContent = state;
-                selectedstate.appendChild(option);
-        })
-    }
-}
-
-    function updatecities(){
-        const selectedState = document.getElementById("states");
-        const cityselected = document.getElementById("cities");
-        const stateselected = selectedState.value;
-
-         cityselected.innerHTML = '<option value="">Select</option>';
-
-         if(stateselected && citiesbystates[stateselected]){
-            citiesbystates[stateselected].forEach(city => {
-                const option = document.createElement("option");
-                option.value = city;
-                option.textContent = city;
-                cityselected.appendChild(option);
-            })
-         }
-    }
-</script>
+<p id="demo"></p>
 </body>
 </html>
