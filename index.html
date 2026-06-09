@@ -35,7 +35,7 @@
     <tr>
         <td>Country</td>
         <td>
-            <select>
+            <select id="countries" onchange="updatestates()">
                 <option>Select</option>
                 <option>India</option>
                 <option>USA</option>
@@ -77,17 +77,42 @@
 </table>
 
 <script>
+
+    const statesbycountry = {
+        India: ["Gujarat", "Maharashtra"],
+        USA: ["California", "Texas"]
+    };
+
     const citiesbystates = {
         Gujarat: ["Surat", "Ahmedabad", "Navsari"],
-        Maharashtra: ["Mumbai", "Pune"]
+        Maharashtra: ["Mumbai", "Pune"],
+        California: ["Los Angeles", "San Francisco"],
+        Texas: ["Houston", "Dallas"]
     };
+
+    function updatestates(){
+        const selectedcountry = document.getElementById("countries");
+        const selectedstate = document.getElementById("states");
+        const countryselected = selectedcountry.value;
+
+        selectedstate.innerHTML = '<option value="">Select</option>';
+
+        if(countryselected && statesbycountry[countryselected]){
+            statesbycountry[countryselected].forEach(state => {
+                const option = document.createElement("option");
+                option.value = state;
+                option.textContent = state;
+                selectedstate.appendChild(option);
+        })
+    }
+}
 
     function updatecities(){
         const selectedState = document.getElementById("states");
         const cityselected = document.getElementById("cities");
         const stateselected = selectedState.value;
 
-         cityselected.innerHTML = '<option value="">Select City</option>';
+         cityselected.innerHTML = '<option value="">Select</option>';
 
          if(stateselected && citiesbystates[stateselected]){
             citiesbystates[stateselected].forEach(city => {
