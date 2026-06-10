@@ -3,10 +3,10 @@
   <head>
     <title>Simple Form</title>
     <link rel="stylesheet" href="styles.css" />
-    <script src="myscripts.js"></script>
   </head>
   <body>
-    <table border="1" cellspacing="1" cellpadding="5" >
+    <main class="app-shell">
+      <table class="form-table" border="1" cellpading="8">
       <tr>
         <td>Name*</td>
         <td>
@@ -80,14 +80,17 @@
 
       <tr>
         <td>Action*</td>
-        <td>
+        <td class="actions-cell">
           <button id="saveBtn" type="button" onclick="savePerson()">Save</button>
-          <button type="button" onclick="resetForm()">Clear</button>
+          <button type="button" class="ghost" onclick="resetForm()">Clear</button>
         </td>
       </tr>
     </table>
 
-    <table id="dtable" border="1" cellspacing="1" cellpadding="5"></table>
-    <p id="demo"></p>
+    <section class="list-card">
+      <table id="dtable" class="records-table" border="1" cellpading="8"></table>
+    </section>
+    </main>
+    <script src="myscripts.js"></script>
   </body>
 </html>

@@ -3,7 +3,7 @@ const statesbycountry = {
   USA: ["California", "Texas"],
 };
 
-const STORAGE_KEY = "personFormDataList";
+let persons = [];
 let editingId = null;
 
 const citiesbystates = {
@@ -46,12 +46,12 @@ function updatecities() {
     });
   }
 }
-function getStoredPersons() {
-  return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+function getPersons() {
+  return persons;
 }
 
-function saveStoredPersons(persons) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(persons));
+function savePersons(nextPersons) {
+  persons = nextPersons;
 }
 
 function storedata() {
@@ -104,22 +104,16 @@ function resetForm() {
   document.getElementById("saveBtn").textContent = "Save";
 }
 
-function renderJsonPreview() {
-  const jsonOutput = document.getElementById("jsonOutput");
-  jsonOutput.textContent = JSON.stringify(getStoredPersons(), null, 2);
-}
-
 function renderTable() {
   const dtable = document.getElementById("dtable");
-  const persons = getStoredPersons();
 
-  dtable.innerHTML = "";
-
-  if (!persons.length) {
-    dtable.innerHTML = "<tr><td colspan='10'>No records yet.</td></tr>";
-    renderJsonPreview();
+  if (!dtable) {
     return;
   }
+
+  const currentPersons = getPersons();
+
+  dtable.innerHTML = "";
 
   const headerRow = dtable.insertRow(0);
   [
@@ -137,7 +131,7 @@ function renderTable() {
     headerCell.textContent = label;
   });
 
-  persons.forEach((person) => {
+  currentPersons.forEach((person) => {
     const row = dtable.insertRow(dtable.rows.length);
     const values = [
       person.name || "--",
@@ -157,14 +151,13 @@ function renderTable() {
         cell.innerHTML = `
           <button type="button" onclick="editPerson(${person.id})">Edit</button>
           <button type="button" onclick="deletePerson(${person.id})">Delete</button>
-        `;
+        `;  
       } else {
         cell.textContent = value;
       }
     });
   });
 
-  renderJsonPreview();
 }
 
 function savePerson() {
@@ -173,24 +166,24 @@ function savePerson() {
     return false;
   }
 
-  const persons = getStoredPersons();
+  const currentPersons = getPersons();
 
   if (editingId) {
-    const index = persons.findIndex((person) => person.id === editingId);
+    const index = currentPersons.findIndex((person) => person.id === editingId);
     if (index !== -1) {
-      persons[index] = { ...persons[index], ...formdata, id: editingId };
+      currentPersons[index] = { ...currentPersons[index], ...formdata, id: editingId };
     }
   } else {
-    persons.push({ ...formdata, id: Date.now() });
+    currentPersons.push({ ...formdata, id: Date.now() });
   }
 
-  saveStoredPersons(persons);
+  savePersons(currentPersons);
   renderTable();
   resetForm();
 }
 
 function editPerson(id) {
-  const person = getStoredPersons().find((item) => item.id === id);
+  const person = getPersons().find((item) => item.id === id);
   if (!person) {
     return;
   }
@@ -220,14 +213,12 @@ function deletePerson(id) {
     return;
   }
 
-  const updatedPersons = getStoredPersons().filter(
-    (person) => person.id !== id,
-  );
-  saveStoredPersons(updatedPersons);
+  const updatedPersons = getPersons().filter((person) => person.id !== id);
+  savePersons(updatedPersons);
   renderTable();
   if (editingId === id) {
     resetForm();
-  }
+  }e
 }
 
 function loadData() {
