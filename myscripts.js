@@ -58,14 +58,14 @@ function storedata() {
     state: document.getElementById("states").value,
     city: document.getElementById("cities").value,
   };
+  const d = Date();
+  formdata.timestamp = d;
   return formdata;
 }
 
 function loadData() {
   const dtable = document.getElementById("dtable");
   const formdata = storedata();
-
-  dtable.innerHTML = "";
   const headerRow = dtable.insertRow(0);
   const valueRow = dtable.insertRow(1);
 
@@ -77,6 +77,7 @@ function loadData() {
     "Country",
     "State",
     "City",
+    "createdtime",
   ];
 
   const values = [
@@ -87,13 +88,11 @@ function loadData() {
     formdata.country,
     formdata.state,
     formdata.city,
+    formdata.timestamp,
   ];
 
   fields.forEach((label, index) => {
-    const headerCell = headerRow.insertCell(index);
     const valueCell = valueRow.insertCell(index);
-
-    headerCell.textContent = label;
     valueCell.textContent = values[index] || "--";
   });
 }
