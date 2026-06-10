@@ -6,23 +6,23 @@
     <script src="myscripts.js"></script>
   </head>
   <body>
-    <table border="1" cellspacing="1" cellpadding="5">
+    <table border="1" cellspacing="1" cellpadding="5" >
       <tr>
-        <td>Name</td>
+        <td>Name*</td>
         <td>
           <input id="name" type="text" cols="40"/>
         </td>
       </tr>
 
       <tr>
-        <td>Email</td>
+        <td>Email*</td>
         <td>
           <input id="email" type="email" cols="40" />
         </td>
       </tr>
 
       <tr>
-        <td>Gender</td>
+        <td>Gender*</td>
         <td>
           <input type="radio" name="gender" value="Male" /> Male
           <input type="radio" name="gender" value="Female" /> Female
@@ -39,7 +39,7 @@
       </tr>
 
       <tr>
-        <td>Country</td>
+        <td>Country*</td>
         <td>
           <select
             class="shortenedSelect"
@@ -54,9 +54,9 @@
       </tr>
 
       <tr>
-        <td>State</td>
+        <td>State*</td>
         <td>
-          <label for="states">Choose a State:</label>
+          <label for="states"></label>
           <select class="shortenedSelect" id="states" onchange="updatecities()">
             <option>Select</option>
             <option>Gujarat</option>
@@ -66,9 +66,9 @@
       </tr>
 
       <tr>
-        <td>City</td>
+        <td>City*</td>
         <td>
-          <label for="cities">Choose a City:</label>
+          <label for="cities"></label>
           <select class="shortenedSelect" id="cities">
             <option>Select</option>
             <option>Surat</option>
@@ -79,24 +79,15 @@
       </tr>
 
       <tr>
-        <td>Action</td>
+        <td>Action*</td>
         <td>
-          <button type="button" onclick="loadData()">Save</button>
+          <button id="saveBtn" type="button" onclick="savePerson()">Save</button>
+          <button type="button" onclick="resetForm()">Clear</button>
         </td>
       </tr>
     </table>
-    <table id="dtable" border="1" cellspacing="1" cellpadding="5">
-        <tr>
-            <td>name</td>
-            <td>email</td>
-            <td>Gender</td>
-            <td>Hobby</td>
-            <td>Country</td>
-            <td>State</td>
-            <td>City</td>
-            <td>Created-Time</td>
-        </tr>
-    </table>
+
+    <table id="dtable" border="1" cellspacing="1" cellpadding="5"></table>
     <p id="demo"></p>
   </body>
 </html>
