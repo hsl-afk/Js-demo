@@ -75,9 +75,9 @@ function storedata() {
     !formdata.name ||
     !formdata.email ||
     !formdata.gender ||
-    !formdata.country ||
-    !formdata.state ||
-    !formdata.city
+    formdata.country=="Select" ||
+    formdata.state=="Select" ||
+    formdata.city=="Select"
   ) {
     alert("Please fill all required fields before saving.");
     return false;
