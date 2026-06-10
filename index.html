@@ -1,83 +1,91 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
+  <head>
     <title>Simple Form</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
     <script src="myscripts.js"></script>
-</head>
-<body>
-<table border="1" cellspacing="1" cellpadding="5">
-    <tr>
+  </head>
+  <body>
+    <table border="1" cellspacing="1" cellpadding="5">
+      <tr>
         <td>Name</td>
-        <td><input id="name" type="text" cols="40" onchange="storedata()"></td>
-    </tr>
+        <td>
+          <input id="name" type="text" cols="40"/>
+        </td>
+      </tr>
 
-    <tr>
+      <tr>
         <td>Email</td>
-        <td><input id="email" type="email" cols="40" onchange="storedata()"></td>
-    </tr>
+        <td>
+          <input id="email" type="email" cols="40" />
+        </td>
+      </tr>
 
-    <tr>
+      <tr>
         <td>Gender</td>
         <td>
-            <input type="radio" name="gender" value="Male"> Male
-            <input type="radio" name="gender" value="Female"> Female
+          <input type="radio" name="gender" value="Male" /> Male
+          <input type="radio" name="gender" value="Female" /> Female
         </td>
-    </tr>
+      </tr>
 
-    <tr>
+      <tr>
         <td>Hobby</td>
         <td>
-            <input type="checkbox" name="hobby" value="Reading"> Reading
-            <input type="checkbox" name="hobby" value="Travelling"> Travelling
-            <input type="checkbox" name="hobby" value="Sports"> Sports
+          <input type="checkbox" name="hobby" value="Reading" /> Reading
+          <input type="checkbox" name="hobby" value="Travelling" /> Travelling
+          <input type="checkbox" name="hobby" value="Sports" /> Sports
         </td>
-    </tr>
+      </tr>
 
-    <tr>
+      <tr>
         <td>Country</td>
         <td>
-            <select class="shortenedSelect" id="countries" onchange="updatestates()">
-                <option>Select</option>
-                <option>India</option>
-                <option>USA</option>
-            </select>
+          <select
+            class="shortenedSelect"
+            id="countries"
+            onchange="updatestates()"
+          >
+            <option>Select</option>
+            <option>India</option>
+            <option>USA</option>
+          </select>
         </td>
-    </tr>
+      </tr>
 
-    <tr>
+      <tr>
         <td>State</td>
         <td>
-            <label for="states">Choose a State:</label>
-            <select class="shortenedSelect" id="states" onchange="updatecities()">
-                <option>Select</option>
-                <option>Gujarat</option>
-                <option>Maharashtra</option>
-            </select>
+          <label for="states">Choose a State:</label>
+          <select class="shortenedSelect" id="states" onchange="updatecities()">
+            <option>Select</option>
+            <option>Gujarat</option>
+            <option>Maharashtra</option>
+          </select>
         </td>
-    </tr>
+      </tr>
 
-    <tr>
+      <tr>
         <td>City</td>
         <td>
-            <label for="cities">Choose a City:</label>
-            <select class="shortenedSelect" id="cities">
-                <option>Select</option>
-                <option>Surat</option>
-                <option>Ahmedabad</option>
-                <option>Navsari</option>
-            </select>
+          <label for="cities">Choose a City:</label>
+          <select class="shortenedSelect" id="cities">
+            <option>Select</option>
+            <option>Surat</option>
+            <option>Ahmedabad</option>
+            <option>Navsari</option>
+          </select>
         </td>
-    </tr>
+      </tr>
 
-    <tr>
+      <tr>
         <td>Action</td>
         <td>
-            <button type="button" onclick="loadData()">Save</button>
+          <button type="button" onclick="loadData()">Save</button>
         </td>
-    </tr>
-</table>
-<p id="demo"></p>
-  <table id="dtable" border="1" cellspacing="1" cellpadding="5"></table>
-</body>
+      </tr>
+    </table>
+    <table id="dtable" border="1" cellspacing="1" cellpadding="5"></table>
+    <p id="demo"></p>
+  </body>
 </html>
