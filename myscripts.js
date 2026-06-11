@@ -49,7 +49,7 @@ function updatecities() {
 function getPersons() {
   return persons;
 }
-``;
+
 function savePersons(nextPersons) {
   persons = nextPersons;
 }
@@ -102,14 +102,14 @@ function resetForm() {
   document.getElementById("saveBtn").textContent = "Save";
 }
 
-function renderTable() {
+function renderTable(personList = getPersons()) {
   const dtable = document.getElementById("dtable");
 
   if (!dtable) {
     return;
   }
 
-  const currentPersons = getPersons();
+  const currentPersons = Array.isArray(personList) ? personList : getPersons();
 
   dtable.innerHTML = "";
 
@@ -223,22 +223,84 @@ function deletePerson(id) {
 }
 
 function search() {
-  const searchname = document.getElementById("searchbox").value;
-  const person = getPersons().find((item) => item.name == searchname);
-  let namestr = JSON.stringify(person, null, 4);
-  console.log(namestr);
-  document.getElementById("p3").textContent = namestr;
+  const searchTerm = document.getElementById("searchbox").value.trim().toLowerCase();
+  const records = Array.isArray(getPersons()) ? getPersons() : [];
+
+  if (!searchTerm) {
+    renderTable(records);
+    document.getElementById("searchResult").textContent =
+      "Type a name or email to filter the records.";
+    return;
+  }
+
+  const filteredRecords = records.filter((item) => {
+    const haystack = [
+      item.name,
+      item.email,
+      item.gender,
+      item.country,
+      item.state,
+      item.city,
+      Array.isArray(item.hobbies) ? item.hobbies.join(" ") : "",
+    ]
+      .join(" ")
+      .toLowerCase();
+
+    return haystack.includes(searchTerm);
+  });
+
+  renderTable(records);
+
+  if (!filteredRecords.length) {
+    document.getElementById("searchResult").textContent =
+      `No results for "${searchTerm}".`;
+    return;
+  }
+
+  const matchDetails = filteredRecords
+    .map((person) => {
+      const hobbies = Array.isArray(person.hobbies) && person.hobbies.length
+        ? person.hobbies.join(", ")
+        : "No hobbies listed";
+
+      return [
+        `Name: ${person.name || "--"}`,
+        `Email: ${person.email || "--"}`,
+        `Gender: ${person.gender || "--"}`,
+        `Hobbies: ${hobbies}`,
+        `Country: ${person.country || "--"}`,
+        `State: ${person.state || "--"}`,
+        `City: ${person.city || "--"}`,
+        `Created: ${person.timestamp || "--"}`,
+      ].join(" | ");
+    })
+    .join("\n");
+
+  document.getElementById("searchResult").textContent =
+    `Showing ${filteredRecords.length} match${filteredRecords.length === 1 ? "" : "es"} for "${searchTerm}".\n\n${matchDetails}`;
 }
 
 function objsorting() {
-  const person = getPersons();
-  let x = document.querySelector('input[name="gender"]:checked') ? document.querySelector('input[name="gender"]:checked').value: "";
-  if (x == "descending"){
-    console.log(person.sort((a, b) => a.name.localeCompare(b.name)).reverse())
+  const records = Array.isArray(getPersons()) ? [...getPersons()] : [];
+  const sortOrder =
+    document.querySelector('input[name="sortOrder"]:checked')?.value ||
+    "Ascending";
+
+  const sortedRecords = [...records].sort((a, b) =>
+    a.name.localeCompare(b.name),
+  );
+
+  if (sortOrder === "descending") {
+    sortedRecords.reverse();
   }
-  else{
-    console.log(person.sort((a, b) => a.name.localeCompare(b.name)));
-  }
+
+  renderTable(sortedRecords);
+
+  const sortMessage = sortedRecords.length
+    ? `Sorted ${sortOrder.toLowerCase()} by name. Showing ${sortedRecords.length} record(s).`
+    : "No records to sort yet.";
+
+  document.getElementById("sortResult").textContent = sortMessage;
 }
 
 function loadData() {

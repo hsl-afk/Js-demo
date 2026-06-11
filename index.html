@@ -10,14 +10,24 @@
         <tr>
           <td>Name*</td>
           <td>
-            <input id="name" type="text" cols="40" placeholder="write your name here"/>
+            <input
+              id="name"
+              type="text"
+              cols="40"
+              placeholder="write your name here"
+            />
           </td>
         </tr>
 
         <tr>
           <td>Email*</td>
           <td>
-            <input id="email" type="email" cols="40" placeholder="john@example.com"/>
+            <input
+              id="email"
+              type="email"
+              cols="40"
+              placeholder="john@example.com"
+            />
           </td>
         </tr>
 
@@ -30,6 +40,7 @@
         </tr>
 
         <tr>
+          <p></p>
           <td>Hobby</td>
           <td>
             <input type="checkbox" name="hobby" value="Reading" /> Reading
@@ -93,13 +104,16 @@
       </table>
       <p id="demo1"></p>
       <section class="list-card">
+        <div class="list-header">
+          <h2>Records</h2>
+          <p id="p2" class="status-text">All saved people will appear here.</p>
+        </div>
         <table
           id="dtable"
           class="records-table"
           border="1"
           cellpading="8"
         ></table>
-        <p id="p2"></p>
       </section>
       <form class="search-min" role="search">
         <input
@@ -110,9 +124,28 @@
         />
         <button type="button" id="searchBtn" onclick="search()">submit</button>
       </form>
-      <button type="button" id="sortBtn" onclick="objsorting()">sort</button>
-      <input type="radio" name="gender" value="Ascending" /> Ascending
-      <input type="radio" name="gender" value="descending" /> Descending
+      <div class="sort-controls">
+        <button type="button" id="sortBtn" onclick="objsorting()">sort</button>
+        <label
+          ><input type="radio" name="sortOrder" value="Ascending" />
+          Ascending</label
+        >
+        <label
+          ><input type="radio" name="sortOrder" value="descending" />
+          Descending</label
+        >
+      </div>
+      <section class="result-card" aria-live="polite">
+        <article class="result-box">
+          <h3>Search result</h3>
+          <p id="searchResult">Type a name to filter the table.</p>
+        </article>
+        <article class="result-box">
+          <h3>Sort result</h3>
+          <p id="sortResult">Choose Ascending or Descending and click Sort.</p>
+        </article>
+      </section>
+      </div>
     </main>
     <script src="myscripts.js"></script>
     <p id="p3"></p>

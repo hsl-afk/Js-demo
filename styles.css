@@ -1,37 +1,123 @@
-.shortenedSelect {
-  width: 100px;
+body {
+  color: #111;
+  margin: 0;
+  padding: 100px;
+}
+
+.app-shell {
+  width: 800px;
+  margin: 0 auto;
+}
+
+.form-table,
+.records-table {
+  border-collapse: collapse;
+  width: 30%;
+  border: 2px solid #000;
+}
+
+.form-table td,
+.records-table td,
+.records-table th {
+  border: 1px solid black;
+  padding: 6px;
+  background: hsl(0, 0%, 100%);
+}
+
+.list-card,
+.result-card {
+  background: #5c5c5c;
+  color: white;
+  border: 2px solid #000;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.list-header {
+  display: block;
+}
+
+.status-text {
+  font-size: 12px;
+  color: #ffffff;
+  margin: 0;
+}
+
+.result-card {
+  display: block;
+}
+
+.result-box {
+  background: #5c5c5c;
+  border: 1px solid #000;
+  padding: 8px;
+  margin-bottom: 8px;
+}
+
+.result-box h3 {
+  margin: 0 0 4px;
+  font-size: 14px;
+}
+
+.result-box p {
+  margin: 0;
+  font-size: 12px;
+}
+
+.search-min,
+.sort-controls {
+  display: block;
+  margin-top: 10px;
+}
+
+.search-min input {
+  width: 200px;
+  margin-right: 5px;
+}
+
+input,
+select,
+button {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 12px;
+  padding: 4px;
+  border: 1px solid #000;
+}
+
+button {
+  background: #ffffff;
+  cursor: pointer;
 }
 
 #saveBtn {
-  background: #274ccf;
-  color: white;
-  border-radius: 8px;
-  padding: 10px 103px;
-  font-size: 14px;
-  cursor: pointer;
-  text-align: center;
+  background-color: #24A0ED; 
+  color: #FFFFFF;            
+  padding: 6px 110px;        
+  border: none;              
+  border-radius: 8px;        
+  font-size: 16px;           
+  cursor: pointer;           
+  transition: background-color 0.2s ease; 
+}
+#dtable {
+  background: #5c5c5c;
+  color: black;
 }
 
-#dtable{
-    background: #343A40;
-    color: white;
+#deleteBtn{
+  background: #ff4444;
+  margin-right: 4px;
 }
 
-#deleteBtn {
-  background: #DC3545;
-  color: white;
-  border-radius: 3px;
-  font-size: 14px;
-  cursor: pointer;
-  text-align: center;
+.shortenedSelect {
+  width: 120px;
 }
 
 #editBtn {
-  background: #ADADAD;
-  color: white;
-  border-radius: 3px;
-  font-size: 14px;
-  cursor: pointer;
-  text-align: center;
+  background: #929292;
+  margin-right: 4px;
 }
 
+#p2{
+  padding-top:0px;
+}
