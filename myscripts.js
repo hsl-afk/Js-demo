@@ -296,11 +296,33 @@ function objsorting() {
 
   renderTable(sortedRecords);
 
-  const sortMessage = sortedRecords.length
-    ? `Sorted ${sortOrder.toLowerCase()} by name. Showing ${sortedRecords.length} record(s).`
-    : "No records to sort yet.";
+  if (!sortedRecords.length) {
+    document.getElementById("sortResult").textContent =
+      "No records to sort yet.";
+    return;
+  }
 
-  document.getElementById("sortResult").textContent = sortMessage;
+  const sortedDetails = sortedRecords
+    .map((person) => {
+      const hobbies = Array.isArray(person.hobbies) && person.hobbies.length
+        ? person.hobbies.join(", ")
+        : "No hobbies listed";
+
+      return [
+        `Name: ${person.name || "--"}`,
+        `Email: ${person.email || "--"}`,
+        `Gender: ${person.gender || "--"}`,
+        `Hobbies: ${hobbies}`,
+        `Country: ${person.country || "--"}`,
+        `State: ${person.state || "--"}`,
+        `City: ${person.city || "--"}`,
+        `Created: ${person.timestamp || "--"}`,
+      ].join(" | ");
+    })
+    .join("\n");
+
+  document.getElementById("sortResult").textContent =
+    `Sorted ${sortOrder.toLowerCase()} by name.\n\n${sortedDetails}`;
 }
 
 function loadData() {
