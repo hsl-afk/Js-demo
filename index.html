@@ -7,90 +7,114 @@
   <body>
     <main class="app-shell">
       <table class="form-table" border="1" cellpading="8">
-      <tr>
-        <td>Name*</td>
-        <td>
-          <input id="name" type="text" cols="40"/>
-        </td>
-      </tr>
+        <tr>
+          <td>Name*</td>
+          <td>
+            <input id="name" type="text" cols="40" />
+          </td>
+        </tr>
 
-      <tr>
-        <td>Email*</td>
-        <td>
-          <input id="email" type="email" cols="40" />
-        </td>
-      </tr>
+        <tr>
+          <td>Email*</td>
+          <td>
+            <input id="email" type="email" cols="40" />
+          </td>
+        </tr>
 
-      <tr>
-        <td>Gender*</td>
-        <td>
-          <input type="radio" name="gender" value="Male" /> Male
-          <input type="radio" name="gender" value="Female" /> Female
-        </td>
-      </tr>
+        <tr>
+          <td>Gender*</td>
+          <td>
+            <input type="radio" name="gender" value="Male" /> Male
+            <input type="radio" name="gender" value="Female" /> Female
+          </td>
+        </tr>
 
-      <tr>
-        <td>Hobby</td>
-        <td>
-          <input type="checkbox" name="hobby" value="Reading" /> Reading
-          <input type="checkbox" name="hobby" value="Travelling" /> Travelling
-          <input type="checkbox" name="hobby" value="Sports" /> Sports
-        </td>
-      </tr>
+        <tr>
+          <td>Hobby</td>
+          <td>
+            <input type="checkbox" name="hobby" value="Reading" /> Reading
+            <input type="checkbox" name="hobby" value="Travelling" /> Travelling
+            <input type="checkbox" name="hobby" value="Sports" /> Sports
+          </td>
+        </tr>
 
-      <tr>
-        <td>Country*</td>
-        <td>
-          <select
-            class="shortenedSelect"
-            id="countries"
-            onchange="updatestates()"
-          >
-            <option>Select</option>
-            <option>India</option>
-            <option>USA</option>
-          </select>
-        </td>
-      </tr>
+        <tr>
+          <td>Country*</td>
+          <td>
+            <select
+              class="shortenedSelect"
+              id="countries"
+              onchange="updatestates()"
+            >
+              <option>Select</option>
+              <option>India</option>
+              <option>USA</option>
+            </select>
+          </td>
+        </tr>
 
-      <tr>
-        <td>State*</td>
-        <td>
-          <label for="states"></label>
-          <select class="shortenedSelect" id="states" onchange="updatecities()">
-            <option>Select</option>
-            <option>Gujarat</option>
-            <option>Maharashtra</option>
-          </select>
-        </td>
-      </tr>
+        <tr>
+          <td>State*</td>
+          <td>
+            <label for="states"></label>
+            <select
+              class="shortenedSelect"
+              id="states"
+              onchange="updatecities()"
+            >
+              <option>Select</option>
+              <option>Gujarat</option>
+              <option>Maharashtra</option>
+            </select>
+          </td>
+        </tr>
 
-      <tr>
-        <td>City*</td>
-        <td>
-          <label for="cities"></label>
-          <select class="shortenedSelect" id="cities">
-            <option>Select</option>
-            <option>Surat</option>
-            <option>Ahmedabad</option>
-            <option>Navsari</option>
-          </select>
-        </td>
-      </tr>
+        <tr>
+          <td>City*</td>
+          <td>
+            <label for="cities"></label>
+            <select class="shortenedSelect" id="cities">
+              <option>Select</option>
+              <option>Gujarat</option>
+              <option>Ahmedabad</option>
+              <option>Navsari</option>
+            </select>
+          </td>
+        </tr>
 
-      <tr>
-        <td>Action*</td>
-        <td class="actions-cell">
-          <button id="saveBtn" type="button" onclick="savePerson()">Save</button>
-          <button type="button" class="ghost" onclick="resetForm()">Clear</button>
-        </td>
-      </tr>
-    </table>
-
-    <section class="list-card">
-      <table id="dtable" class="records-table" border="1" cellpading="8"></table>
-    </section>
+        <tr>
+          <td>Action*</td>
+          <td class="actions-cell">
+            <button id="saveBtn" type="button" onclick="savePerson()">
+              Save
+            </button>
+          </td>
+        </tr>
+      </table>
+      <p id="demo1"></p>
+      <section class="list-card">
+        <table
+          id="dtable"
+          class="records-table"
+          border="1"
+          cellpading="8"
+        ></table>
+        <p id="p2"></p>
+      </section>
+      <form class="search-min" role="search">
+        <input
+          type="search"
+          id="searchbox"
+          placeholder="Search everything..."
+          aria-label="Search"
+        />
+        <button type="button" id="searchBtn" onclick="search()">submit</button>
+      </form>
+      <button type="button" id="sortBtn" onclick="objsorting()">sort</button>
+      <input type="radio" name="gender" value="Ascending" /> Ascending
+      <input type="radio" name="gender" value="descending" /> descending
     </main>
     <script src="myscripts.js"></script>
+    <p id="p3"></p>
   </body>
 </html>

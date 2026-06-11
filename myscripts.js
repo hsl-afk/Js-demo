@@ -49,7 +49,7 @@ function updatecities() {
 function getPersons() {
   return persons;
 }
-
+``;
 function savePersons(nextPersons) {
   persons = nextPersons;
 }
@@ -58,9 +58,7 @@ function storedata() {
   const formdata = {
     name: document.getElementById("name").value.trim(),
     email: document.getElementById("email").value.trim(),
-    gender: document.querySelector('input[name="gender"]:checked')
-      ? document.querySelector('input[name="gender"]:checked').value
-      : "",
+    gender: document.querySelector('input[name="gender"]:checked') ? document.querySelector('input[name="gender"]:checked').value: "",
     hobbies: Array.from(
       document.querySelectorAll('input[name="hobby"]:checked'),
     ).map((checkbox) => checkbox.value),
@@ -75,9 +73,9 @@ function storedata() {
     !formdata.name ||
     !formdata.email ||
     !formdata.gender ||
-    formdata.country=="Select" ||
-    formdata.state=="Select" ||
-    formdata.city=="Select"
+    formdata.country == "Select" ||
+    formdata.state == "Select" ||
+    formdata.city == "Select"
   ) {
     alert("Please fill all required fields before saving.");
     return false;
@@ -149,15 +147,14 @@ function renderTable() {
       const cell = row.insertCell(index);
       if (index === 8) {
         cell.innerHTML = `
-          <button type="button" onclick="editPerson(${person.id})">Edit</button>
-          <button type="button" onclick="deletePerson(${person.id})">Delete</button>
-        `;  
+          <button type="button" id="editBtn" onclick="editPerson(${person.id})">Edit</button>
+          <button type="button" id="deleteBtn" onclick="deletePerson(${person.id})">Delete</button>
+        `;
       } else {
         cell.textContent = value;
       }
     });
   });
-
 }
 
 function savePerson() {
@@ -171,7 +168,11 @@ function savePerson() {
   if (editingId) {
     const index = currentPersons.findIndex((person) => person.id === editingId);
     if (index !== -1) {
-      currentPersons[index] = { ...currentPersons[index], ...formdata, id: editingId };
+      currentPersons[index] = {
+        ...currentPersons[index],
+        ...formdata,
+        id: editingId,
+      };
     }
   } else {
     currentPersons.push({ ...formdata, id: Date.now() });
@@ -218,11 +219,29 @@ function deletePerson(id) {
   renderTable();
   if (editingId === id) {
     resetForm();
-  }e
+  }
+}
+
+function search() {
+  const searchname = document.getElementById("searchbox").value;
+  const person = getPersons().find((item) => item.name == searchname);
+  let namestr = JSON.stringify(person, null, 4);
+  console.log(namestr);
+  document.getElementById("p3").textContent = namestr;
+}
+
+function objsorting() {
+  const person = getPersons();
+  let x = document.querySelector('input[name="gender"]:checked') ? document.querySelector('input[name="gender"]:checked').value: "";
+  if (x == "descending"){
+    console.log(person.sort((a, b) => a.name.localeCompare(b.name)).reverse())
+  }
+  else{
+    console.log(person.sort((a, b) => a.name.localeCompare(b.name)));
+  }
 }
 
 function loadData() {
   renderTable();
 }
-
 loadData();
