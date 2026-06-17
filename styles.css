@@ -1,5 +1,5 @@
 body {
-  color: #111;
+  color: #000000;
   margin: 0;
   padding: 100px;
 }
@@ -85,6 +85,10 @@ body {
   width: 200px;
   margin-right: 5px;
   border-radius: 6px;
+  border: 1px solid #000000;
+  font-size: 13px;
+  background-image: url("searchicon.jpg");
+  
 }
 
 input,
@@ -119,6 +123,7 @@ button {
 #dtable {
   background: #5c5c5c;
   color: black;
+  overflow-x: auto;
 }
 
 #deleteBtn {
@@ -127,10 +132,18 @@ button {
 }
 
 .shortenedSelect {
-  width: 1px;
+  width: 130px;
 }
 
 #editBtn {
   background: #929292;
   margin-right: 4px;
+}
+
+#p2 {
+  padding-top: 0px;
+}
+
+#reqname{
+  font-size: 12px
 }

@@ -68,7 +68,7 @@ function storedata() {
     city: document.getElementById("cities").value,
   };
 
-  formdata.timestamp = new Date().toLocaleString();0
+  formdata.timestamp = new Date().toLocaleString();
 
   if (
     !formdata.name ||

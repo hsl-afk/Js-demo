@@ -7,18 +7,18 @@
     <main class="app-shell">
       <table class="form-table" border="1" cellpading="8">
         <tr>
-          <td>Name:
+          <td><p id="reqname"></p>
+            Name:
             <input
               id="name"
               type="text"
               cols="40"
-              placeholder="write your name here"
+              placeholder="Your name.."
             />
           </td>
         </tr>
-
         <tr>
-          <td>Email:
+          <td><p id="reqemail"></p>Email:
             <input
               id="email"
               type="email"
@@ -29,7 +29,7 @@
         </tr>
 
         <tr>
-          <td>Gender:
+          <td><p id="reqgender"></p>Gender:
             <input type="radio" name="gender" value="Male" /> Male
             <input type="radio" name="gender" value="Female" /> Female
           </td>
@@ -37,14 +37,16 @@
 
         <tr>
           <td>Hobby:
+            <p>
             <input type="checkbox" name="hobby" value="Reading" /> Reading
             <input type="checkbox" name="hobby" value="Travelling" /> Travelling
             <input type="checkbox" name="hobby" value="Sports" /> Sports
+            </p>
           </td>
         </tr>
 
         <tr>
-          <td>Country:
+          <td><p id="reqcountry"></p>Country:
             <select
               class="shortenedSelect"
               id="countries"
@@ -58,7 +60,7 @@
         </tr>
 
         <tr>
-          <td>State:
+          <td><p id="reqstate"></p>State:
             <label for="states"></label>
             <select
               class="shortenedSelect"
@@ -71,15 +73,15 @@
         </tr>
 
         <tr>
-          <td>City:
+          <td><p id="reqcity"></p>City:
             <label for="cities"></label>
-            <select class="shortenedSelect" id="cities" onchange="checkcities()">
+            <select class="shortenedSelect" id="cities">
               <option>Select</option>
             </select>
           </td>
         </tr>
         <tr>
-          <td>Action:
+          <td>
             <button id="saveBtn" type="button" onclick="savePerson()">
               Save
             </button>
@@ -103,7 +105,7 @@
         <input
           type="search"
           id="searchbox"
-          placeholder="Search everything..."
+          placeholder="Search.."
           aria-label="Search"
         />
         <button type="button" id="searchBtn" onclick="search()">submit</button>
