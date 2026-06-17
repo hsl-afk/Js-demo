@@ -68,15 +68,15 @@ function storedata() {
     city: document.getElementById("cities").value,
   };
 
-  formdata.timestamp = new Date().toLocaleString();
+  formdata.timestamp = new Date().toLocaleString();0
 
   if (
     !formdata.name ||
     !formdata.email ||
     !formdata.gender ||
     formdata.country == "Select" ||
-    formdata.state == "Select" ||
-    formdata.city == "Select"
+    formdata.state == "" ||
+    formdata.city == ""
   ) {
     alert("Please fill all required fields before saving.");
     return false;
@@ -237,7 +237,7 @@ function search() {
   }
 
   const filteredRecords = records.filter((item) => {
-    const haystack = [
+    const stack = [
       item.name,
       item.email,
       item.gender,
@@ -249,7 +249,7 @@ function search() {
       .join(" ")
       .toLowerCase();
 
-    return haystack.includes(searchTerm);
+    return stack.includes(searchTerm);
   });
 
   renderTable(records);

@@ -13,32 +13,41 @@ body {
 .records-table {
   border-collapse: collapse;
   width: 30%;
-  border: 2px solid #000;
+  border: 2px solid #000000;
+  text-align: left;
+  border-collapse: separate;
+  padding: 2px;
+  border-spacing: 5px;
+  border-radius: 8px;
 }
 
 .form-table td,
 .records-table td,
 .records-table th {
-  border: 1px solid black;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 6px;
   padding: 6px;
   background: hsl(0, 0%, 100%);
 }
 
 .list-card,
 .result-card {
-  background: #5c5c5c;
+  background: #8d8d8d;
   color: white;
   border: 2px solid #000;
   padding: 10px;
   margin-top: 10px;
+  border-radius: 6px;
 }
 
 .list-header {
+  font-size: 15px;
   display: block;
+  margin: 0;
 }
 
 .status-text {
-  font-size: 12px;
+  font-size: 20px;
   color: #ffffff;
   margin: 0;
 }
@@ -51,28 +60,31 @@ body {
   background: #5c5c5c;
   border: 1px solid #000;
   padding: 8px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  border-radius: 6px;
 }
 
 .result-box h3 {
   margin: 0 0 4px;
-  font-size: 14px;
+  font-size: 20px;
 }
 
 .result-box p {
   margin: 0;
-  font-size: 12px;
+  font-size: 20px;
+  border-radius: 6px;
 }
 
 .search-min,
 .sort-controls {
   display: block;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 .search-min input {
   width: 200px;
   margin-right: 5px;
+  border-radius: 6px;
 }
 
 input,
@@ -81,43 +93,44 @@ button {
   font-family: "Courier New", Courier, monospace;
   font-size: 12px;
   padding: 4px;
-  border: 1px solid #000;
+  border: 1px solid #000000;
+  border-radius: 6px;
 }
 
 button {
-  background: #ffffff;
+  background-color: #24a0ed;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 #saveBtn {
-  background-color: #24A0ED; 
-  color: #FFFFFF;            
-  padding: 6px 110px;        
-  border: none;              
-  border-radius: 8px;        
-  font-size: 16px;           
-  cursor: pointer;           
-  transition: background-color 0.2s ease; 
+  background-color: #24a0ed;
+  color: #ffffff;
+  padding: 6px 110px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 #dtable {
   background: #5c5c5c;
   color: black;
 }
 
-#deleteBtn{
+#deleteBtn {
   background: #ff4444;
   margin-right: 4px;
 }
 
 .shortenedSelect {
-  width: 120px;
+  width: 1px;
 }
 
 #editBtn {
   background: #929292;
   margin-right: 4px;
-}
-
-#p2{
-  padding-top:0px;
 }

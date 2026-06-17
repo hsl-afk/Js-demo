@@ -7,8 +7,7 @@
     <main class="app-shell">
       <table class="form-table" border="1" cellpading="8">
         <tr>
-          <td>Name*</td>
-          <td>
+          <td>Name:
             <input
               id="name"
               type="text"
@@ -19,8 +18,7 @@
         </tr>
 
         <tr>
-          <td>Email*</td>
-          <td>
+          <td>Email:
             <input
               id="email"
               type="email"
@@ -31,17 +29,14 @@
         </tr>
 
         <tr>
-          <td>Gender*</td>
-          <td>
+          <td>Gender:
             <input type="radio" name="gender" value="Male" /> Male
             <input type="radio" name="gender" value="Female" /> Female
           </td>
         </tr>
 
         <tr>
-          <p></p>
-          <td>Hobby</td>
-          <td>
+          <td>Hobby:
             <input type="checkbox" name="hobby" value="Reading" /> Reading
             <input type="checkbox" name="hobby" value="Travelling" /> Travelling
             <input type="checkbox" name="hobby" value="Sports" /> Sports
@@ -49,8 +44,7 @@
         </tr>
 
         <tr>
-          <td>Country*</td>
-          <td>
+          <td>Country:
             <select
               class="shortenedSelect"
               id="countries"
@@ -64,8 +58,7 @@
         </tr>
 
         <tr>
-          <td>State*</td>
-          <td>
+          <td>State:
             <label for="states"></label>
             <select
               class="shortenedSelect"
@@ -78,18 +71,15 @@
         </tr>
 
         <tr>
-          <td>City*</td>
-          <td>
+          <td>City:
             <label for="cities"></label>
-            <select class="shortenedSelect" id="cities">
+            <select class="shortenedSelect" id="cities" onchange="checkcities()">
               <option>Select</option>
             </select>
           </td>
         </tr>
-
         <tr>
-          <td>Action*</td>
-          <td class="actions-cell">
+          <td>Action:
             <button id="saveBtn" type="button" onclick="savePerson()">
               Save
             </button>
