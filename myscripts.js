@@ -28,15 +28,14 @@ function updatestates() {
       selectedstate.appendChild(option);
     });
   }
+  updatecities();
 }
 
 function updatecities() {
   const selectedState = document.getElementById("states");
   const cityselected = document.getElementById("cities");
   const stateselected = selectedState.value;
-
   cityselected.innerHTML = '<option value="">Select</option>';
-
   if (stateselected && citiesbystates[stateselected]) {
     citiesbystates[stateselected].forEach((city) => {
       const option = document.createElement("option");
@@ -58,7 +57,9 @@ function storedata() {
   const formdata = {
     name: document.getElementById("name").value.trim(),
     email: document.getElementById("email").value.trim(),
-    gender: document.querySelector('input[name="gender"]:checked') ? document.querySelector('input[name="gender"]:checked').value: "",
+    gender: document.querySelector('input[name="gender"]:checked')
+      ? document.querySelector('input[name="gender"]:checked').value
+      : "",
     hobbies: Array.from(
       document.querySelectorAll('input[name="hobby"]:checked'),
     ).map((checkbox) => checkbox.value),
@@ -93,7 +94,7 @@ function resetForm() {
   document.querySelectorAll('input[name="hobby"]').forEach((item) => {
     item.checked = false;
   });
-  document.getElementById("countries").value = "";
+  document.getElementById("countries").value = "Select";
   document.getElementById("states").innerHTML =
     '<option value="">Select</option>';
   document.getElementById("cities").innerHTML =
@@ -204,7 +205,6 @@ function editPerson(id) {
     item.checked =
       Array.isArray(person.hobbies) && person.hobbies.includes(item.value);
   });
-
   editingId = id;
   document.getElementById("saveBtn").textContent = "Update";
 }
@@ -223,7 +223,10 @@ function deletePerson(id) {
 }
 
 function search() {
-  const searchTerm = document.getElementById("searchbox").value.trim().toLowerCase();
+  const searchTerm = document
+    .getElementById("searchbox")
+    .value.trim()
+    .toLowerCase();
   const records = Array.isArray(getPersons()) ? getPersons() : [];
 
   if (!searchTerm) {
@@ -259,9 +262,10 @@ function search() {
 
   const matchDetails = filteredRecords
     .map((person) => {
-      const hobbies = Array.isArray(person.hobbies) && person.hobbies.length
-        ? person.hobbies.join(", ")
-        : "No hobbies listed";
+      const hobbies =
+        Array.isArray(person.hobbies) && person.hobbies.length
+          ? person.hobbies.join(", ")
+          : "No hobbies listed";
 
       return [
         `Name: ${person.name || "--"}`,
@@ -304,9 +308,10 @@ function objsorting() {
 
   const sortedDetails = sortedRecords
     .map((person) => {
-      const hobbies = Array.isArray(person.hobbies) && person.hobbies.length
-        ? person.hobbies.join(", ")
-        : "No hobbies listed";
+      const hobbies =
+        Array.isArray(person.hobbies) && person.hobbies.length
+          ? person.hobbies.join(", ")
+          : "No hobbies listed";
 
       return [
         `Name: ${person.name || "--"}`,
