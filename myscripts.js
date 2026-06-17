@@ -70,16 +70,36 @@ function storedata() {
 
   formdata.timestamp = new Date().toLocaleString();
 
-  if (
-    !formdata.name ||
-    !formdata.email ||
-    !formdata.gender ||
-    formdata.country == "Select" ||
-    formdata.state == "" ||
-    formdata.city == ""
-  ) {
-    alert("Please fill all required fields before saving.");
-    return false;
+  document.getElementById("reqname").textContent = "";
+  document.getElementById("reqemail").textContent = "";
+  document.getElementById("reqgender").textContent = "";
+  document.getElementById("reqcountry").textContent = "";
+  document.getElementById("reqstate").textContent = "";
+  document.getElementById("reqcity").textContent = "";
+
+  if (!formdata.name) {
+    document.getElementById("reqname").textContent = "*required";
+    return;
+  }
+  if (!formdata.email) {
+    document.getElementById("reqemail").textContent = "*required";
+    return;
+  }
+  if (!formdata.gender) {
+    document.getElementById("reqgender").textContent = "*required";
+    return;
+  }
+  if (formdata.country == "Select") {
+    document.getElementById("reqcountry").textContent = "*required";
+    return;
+  }
+  if (!formdata.state) {
+    document.getElementById("reqstate").textContent = "*required";
+    return;
+  }
+  if (!formdata.city) {
+    document.getElementById("reqcity").textContent = "*required";
+    return;
   }
 
   return formdata;
@@ -124,7 +144,8 @@ function renderTable(personList = getPersons()) {
     "State",
     "City",
     "Created",
-    "Actions",
+    "Edit",
+    "Delete",
   ].forEach((label, index) => {
     const headerCell = headerRow.insertCell(index);
     headerCell.textContent = label;
@@ -142,15 +163,17 @@ function renderTable(personList = getPersons()) {
       person.city || "--",
       person.timestamp || "--",
       "",
+      "",
     ];
 
     values.forEach((value, index) => {
       const cell = row.insertCell(index);
-      if (index === 8) {
-        cell.innerHTML = `
-          <button type="button" id="editBtn" onclick="editPerson(${person.id})">Edit</button>
-          <button type="button" id="deleteBtn" onclick="deletePerson(${person.id})">Delete</button>
-        `;
+      if (index >= 8) {
+        cell.innerHTML = `<button type="button" id="editBtn" onclick="editPerson(${person.id})">Edit</button>`;
+
+        if (index === 9) {
+          cell.innerHTML = `<button type="button" id="deleteBtn" onclick="deletePerson(${person.id})">Delete</button>`;
+        }
       } else {
         cell.textContent = value;
       }

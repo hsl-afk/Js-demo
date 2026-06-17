@@ -88,7 +88,6 @@ body {
   border: 1px solid #000000;
   font-size: 13px;
   background-image: url("searchicon.jpg");
-  
 }
 
 input,
@@ -144,6 +143,10 @@ button {
   padding-top: 0px;
 }
 
-#reqname{
-  font-size: 12px
+#reqname {
+  font-size: 12px;
+}
+
+.errormsg {
+  color: red;
 }
