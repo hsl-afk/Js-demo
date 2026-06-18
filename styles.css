@@ -5,12 +5,12 @@ body {
 }
 
 .app-shell {
-  width: 800px;
+  width: 1000px;
+  max-width: 100%;
   margin: 0 auto;
 }
 
-.form-table,
-.records-table {
+.form-table {
   border-collapse: collapse;
   width: 30%;
   border: 2px solid #000000;
@@ -21,6 +21,19 @@ body {
   border-radius: 8px;
 }
 
+.records-table {
+  border-collapse: collapse;
+  width: 200%;
+  min-width: 900px;
+  border: 2px solid #000000;
+  text-align: left;
+  border-collapse: separate;
+  padding: 2px;
+  border-spacing: 5px;
+  border-radius: 8px;
+  table-layout: fixed;
+}
+
 .form-table td,
 .records-table td,
 .records-table th {
@@ -28,6 +41,9 @@ body {
   border-radius: 6px;
   padding: 6px;
   background: hsl(0, 0%, 100%);
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .list-card,
@@ -38,6 +54,7 @@ body {
   padding: 10px;
   margin-top: 10px;
   border-radius: 6px;
+  overflow-x: auto;
 }
 
 .list-header {
@@ -87,7 +104,6 @@ body {
   border-radius: 6px;
   border: 1px solid #000000;
   font-size: 13px;
-  background-image: url("searchicon.jpg");
 }
 
 input,
@@ -121,8 +137,8 @@ button {
 }
 #dtable {
   background: #5c5c5c;
-  color: black;
   overflow-x: auto;
+  width: auto;
 }
 
 #deleteBtn {
