@@ -245,17 +245,127 @@ function deletePerson(id) {
   }
 }
 
+function renderSearchResults(personList = []) {
+  const searchResult = document.getElementById("searchResult");
+  if (!searchResult) {
+    return;
+  }
+
+  searchResult.innerHTML = "";
+  if (!personList.length) {
+    return;
+  }
+
+  const table = document.createElement("table");
+  table.className = "records-table search-results-table";
+  table.border = "1";
+  table.cellPadding = "8";
+
+  const headerRow = table.insertRow();
+  [
+    "Name",
+    "Email",
+    "Gender",
+    "Hobbies",
+    "Country",
+    "State",
+    "City",
+    "Created",
+  ].forEach((label) => {
+    const th = document.createElement("th");
+    th.textContent = label;
+    headerRow.appendChild(th);
+  });
+
+  personList.forEach((person) => {
+    const row = table.insertRow();
+    const values = [
+      person.name || "--",
+      person.email || "--",
+      person.gender || "--",
+      Array.isArray(person.hobbies) ? person.hobbies.join(", ") : "--",
+      person.country || "--",
+      person.state || "--",
+      person.city || "--",
+      person.timestamp || "--",
+    ];
+
+    values.forEach((value) => {
+      const cell = row.insertCell();
+      cell.textContent = value;
+    });
+  });
+
+  searchResult.appendChild(table);
+}
+
+function renderSortResults(personList = []) {
+  const sortResult = document.getElementById("sortResult");
+  if (!sortResult) {
+    return;
+  }
+
+  sortResult.innerHTML = "";
+  if (!personList.length) {
+    return;
+  }
+
+  const table = document.createElement("table");
+  table.className = "records-table sort-results-table";
+  table.border = "1";
+  table.cellPadding = "8";
+
+  const headerRow = table.insertRow();
+  [
+    "Name",
+    "Email",
+    "Gender",
+    "Hobbies",
+    "Country",
+    "State",
+    "City",
+    "Created",
+  ].forEach((label) => {
+    const th = document.createElement("th");
+    th.textContent = label;
+    headerRow.appendChild(th);
+  });
+
+  personList.forEach((person) => {
+    const row = table.insertRow();
+    const values = [
+      person.name || "--",
+      person.email || "--",
+      person.gender || "--",
+      Array.isArray(person.hobbies) ? person.hobbies.join(", ") : "--",
+      person.country || "--",
+      person.state || "--",
+      person.city || "--",
+      person.timestamp || "--",
+    ];
+
+    values.forEach((value) => {
+      const cell = row.insertCell();
+      cell.textContent = value;
+    });
+  });
+
+  sortResult.appendChild(table);
+}
+
 function search() {
   const searchTerm = document
     .getElementById("searchbox")
     .value.trim()
     .toLowerCase();
   const records = Array.isArray(getPersons()) ? getPersons() : [];
+  const searchResult = document.getElementById("searchResult");
 
   if (!searchTerm) {
     renderTable(records);
-    document.getElementById("searchResult").textContent =
-      "Type a name or email to filter the records.";
+    if (searchResult) {
+      searchResult.innerHTML = "<p>search by name</p>";
+    }
     return;
   }
 
@@ -278,33 +388,18 @@ function search() {
   renderTable(records);
 
   if (!filteredRecords.length) {
-    document.getElementById("searchResult").textContent =
-      `No results for "${searchTerm}".`;
+    if (searchResult) {
+      searchResult.innerHTML = `<p>No results for "${searchTerm}".</p>`;
+    }
     return;
   }
 
-  const matchDetails = filteredRecords
-    .map((person) => {
-      const hobbies =
-        Array.isArray(person.hobbies) && person.hobbies.length
-          ? person.hobbies.join(", ")
-          : "No hobbies listed";
-
-      return [
-        `Name: ${person.name || "--"}`,
-        `Email: ${person.email || "--"}`,
-        `Gender: ${person.gender || "--"}`,
-        `Hobbies: ${hobbies}`,
-        `Country: ${person.country || "--"}`,
-        `State: ${person.state || "--"}`,
-        `City: ${person.city || "--"}`,
-        `Created: ${person.timestamp || "--"}`,
-      ].join(" | ");
-    })
-    .join("\n");
-
-  document.getElementById("searchResult").textContent =
-    `Showing ${filteredRecords.length} match${filteredRecords.length === 1 ? "" : "es"} for "${searchTerm}".\n\n${matchDetails}`;
+  if (searchResult) {
+    searchResult.innerHTML = `<p>Showing ${filteredRecords.length} match${
+      filteredRecords.length === 1 ? "" : "es"
+    } for "${searchTerm}".</p>`;
+    renderSearchResults(filteredRecords);
+  }
 }
 
 function objsorting() {
@@ -321,36 +416,18 @@ function objsorting() {
     sortedRecords.reverse();
   }
 
-  renderTable(sortedRecords);
-
+  const sortResult = document.getElementById("sortResult");
   if (!sortedRecords.length) {
-    document.getElementById("sortResult").textContent =
-      "No records to sort yet.";
+    if (sortResult) {
+      sortResult.innerHTML = "<p>No records to sort yet.</p>";
+    }
     return;
   }
 
-  const sortedDetails = sortedRecords
-    .map((person) => {
-      const hobbies =
-        Array.isArray(person.hobbies) && person.hobbies.length
-          ? person.hobbies.join(", ")
-          : "No hobbies listed";
-
-      return [
-        `Name: ${person.name || "--"}`,
-        `Email: ${person.email || "--"}`,
-        `Gender: ${person.gender || "--"}`,
-        `Hobbies: ${hobbies}`,
-        `Country: ${person.country || "--"}`,
-        `State: ${person.state || "--"}`,
-        `City: ${person.city || "--"}`,
-        `Created: ${person.timestamp || "--"}`,
-      ].join(" | ");
-    })
-    .join("\n");
-
-  document.getElementById("sortResult").textContent =
-    `Sorted ${sortOrder.toLowerCase()} by name.\n\n${sortedDetails}`;
+  if (sortResult) {
+    sortResult.innerHTML = `<p>Sorted ${sortOrder.toLowerCase()} by name.</p>`;
+    renderSortResults(sortedRecords);
+  }
 }
 
 function loadData() {

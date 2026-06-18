@@ -34,6 +34,26 @@ body {
   table-layout: fixed;
 }
 
+.search-results-table,
+.sort-results-table {
+  width: 100%;
+  min-width: auto;
+  margin-top: 10px;
+}
+
+.search-results-table th,
+.search-results-table td,
+.sort-results-table th,
+.sort-results-table td {
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 6px;
+  padding: 6px;
+  background: hsl(0, 0%, 100%);
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
 .form-table td,
 .records-table td,
 .records-table th {
