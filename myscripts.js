@@ -240,9 +240,12 @@ function deletePerson(id) {
   const updatedPersons = getPersons().filter((person) => person.id !== id);
   savePersons(updatedPersons);
   renderTable();
+  renderSearchResults();
+  renderSortResults();
   if (editingId === id) {
     resetForm();
   }
+  document.getElementById("searchbox").textContent = "Search..";
 }
 
 function renderSearchResults(personList = []) {
@@ -352,6 +355,18 @@ function renderSortResults(personList = []) {
 
   sortResult.appendChild(table);
 }
+
+(function initLiveSearch() {
+  const sb = document.getElementById("searchbox");
+  if (!sb) return;
+  sb.addEventListener("input", search);
+  sb.addEventListener("keyup", (e) => {
+    if (e.key === "Escape") {
+      sb.value = "";
+      search();
+    }
+  });
+})();
 
 function search() {
   const searchTerm = document
