@@ -245,7 +245,7 @@ function deletePerson(id) {
   if (editingId === id) {
     resetForm();
   }
-  document.getElementById("searchbox").textContent = "Search..";
+  document.getElementById("searchbox").value = "";
 }
 
 function renderSearchResults(personList = []) {
@@ -449,3 +449,8 @@ function loadData() {
   renderTable();
 }
 loadData();
+
+function clearbox() {
+  document.getElementById("searchbox").value = "";
+  renderSearchResults();
+}
