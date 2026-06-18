@@ -447,7 +447,7 @@ function objsorting() {
 
 function loadData() {
   renderTable();
-}
+} 
 loadData();
 
 function clearbox() {
