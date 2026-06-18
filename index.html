@@ -88,21 +88,6 @@
           </td>
         </tr>
       </table>
-      <p id="demo1"></p>
-      <section class="list-card" style="width: auto;">
-        <div class="list-header">
-          <h2>Records</h2>
-          <p id="p2" class="status-text">All saved people will appear here.</p>
-        </div>
-        <table
-          id="dtable"
-          class="records-table"
-          border="1"
-          cellpading="8"
-          width= "auto"
-        ></table>
-      </section>
-      </div>
       <section class="result-card" aria-live="polite">
         <article class="result-box">
           <form class="search-min" role="search">
@@ -121,19 +106,33 @@
         <article class="result-box">
                 <div class="sort-controls">
         <label
-          ><input type="radio" name="sortOrder" value="Ascending" />
+          ><input type="radio" name="sortOrder" value="Ascending" onchange="objsorting()" />
           Ascending</label
         >
         <label
-          ><input type="radio" name="sortOrder" value="descending" />
+          ><input type="radio" name="sortOrder" value="descending" onchange="objsorting()" />
           Descending</label
         >
-        <button type="button" id="sortBtn" onclick="objsorting()">sort</button>
       </div>
           <h3>Sort result</h3>
           <div id="sortResult">Choose Ascending or Descending and click Sort.</div>
         </article>
       </section>
+      <p id="demo1"></p>
+      <section class="list-card" style="width: auto;">
+        <div class="list-header">
+          <h2>Records</h2>
+          <p id="p2" class="status-text">All saved people will appear here.</p>
+        </div>
+        <table
+          id="dtable"
+          class="records-table"
+          border="1"
+          cellpading="8"
+          width= "auto"
+        ></table>
+      </section>
+      </div>
       </div>
     </main>
     <script src="myscripts.js"></script>

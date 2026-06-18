@@ -248,113 +248,113 @@ function deletePerson(id) {
   document.getElementById("searchbox").value = "";
 }
 
-function renderSearchResults(personList = []) {
-  const searchResult = document.getElementById("searchResult");
-  if (!searchResult) {
-    return;
-  }
+// function renderSearchResults(personList = []) {
+//   const searchResult = document.getElementById("searchResult");
+//   if (!searchResult) {
+//     return;
+//   }
 
-  searchResult.innerHTML = "";
-  if (!personList.length) {
-    return;
-  }
+//   searchResult.innerHTML = "";
+//   if (!personList.length) {
+//     return;
+//   }
 
-  const table = document.createElement("table");
-  table.className = "records-table search-results-table";
-  table.border = "1";
-  table.cellPadding = "8";
+//   const table = document.createElement("table");
+//   table.className = "records-table search-results-table";
+//   table.border = "1";
+//   table.cellPadding = "8";
 
-  const headerRow = table.insertRow();
-  [
-    "Name",
-    "Email",
-    "Gender",
-    "Hobbies",
-    "Country",
-    "State",
-    "City",
-    "Created",
-  ].forEach((label) => {
-    const th = document.createElement("th");
-    th.textContent = label;
-    headerRow.appendChild(th);
-  });
+//   const headerRow = table.insertRow();
+//   [
+//     "Name",
+//     "Email",
+//     "Gender",
+//     "Hobbies",
+//     "Country",
+//     "State",
+//     "City",
+//     "Created",
+//   ].forEach((label) => {
+//     const th = document.createElement("th");
+//     th.textContent = label;
+//     headerRow.appendChild(th);
+//   });
 
-  personList.forEach((person) => {
-    const row = table.insertRow();
-    const values = [
-      person.name || "--",
-      person.email || "--",
-      person.gender || "--",
-      Array.isArray(person.hobbies) ? person.hobbies.join(", ") : "--",
-      person.country || "--",
-      person.state || "--",
-      person.city || "--",
-      person.timestamp || "--",
-    ];
+//   personList.forEach((person) => {
+//     const row = table.insertRow();
+//     const values = [
+//       person.name || "--",
+//       person.email || "--",
+//       person.gender || "--",
+//       Array.isArray(person.hobbies) ? person.hobbies.join(", ") : "--",
+//       person.country || "--",
+//       person.state || "--",
+//       person.city || "--",
+//       person.timestamp || "--",
+//     ];
 
-    values.forEach((value) => {
-      const cell = row.insertCell();
-      cell.textContent = value;
-    });
-  });
+//     values.forEach((value) => {
+//       const cell = row.insertCell();
+//       cell.textContent = value;
+//     });
+//   });
 
-  searchResult.appendChild(table);
-}
+//   searchResult.appendChild(table);
+// }
 
-function renderSortResults(personList = []) {
-  const sortResult = document.getElementById("sortResult");
-  if (!sortResult) {
-    return;
-  }
+// function renderSortResults(personList = []) {
+//   const sortResult = document.getElementById("sortResult");
+//   if (!sortResult) {
+//     return;
+//   }
 
-  sortResult.innerHTML = "";
-  if (!personList.length) {
-    return;
-  }
+//   sortResult.innerHTML = "";
+//   if (!personList.length) {
+//     return;
+//   }
 
-  const table = document.createElement("table");
-  table.className = "records-table sort-results-table";
-  table.border = "1";
-  table.cellPadding = "8";
+//   const table = document.createElement("table");
+//   table.className = "records-table sort-results-table";
+//   table.border = "1";
+//   table.cellPadding = "8";
 
-  const headerRow = table.insertRow();
-  [
-    "Name",
-    "Email",
-    "Gender",
-    "Hobbies",
-    "Country",
-    "State",
-    "City",
-    "Created",
-  ].forEach((label) => {
-    const th = document.createElement("th");
-    th.textContent = label;
-    headerRow.appendChild(th);
-  });
+//   const headerRow = table.insertRow();
+//   [
+//     "Name",
+//     "Email",
+//     "Gender",
+//     "Hobbies",
+//     "Country",
+//     "State",
+//     "City",
+//     "Created",
+//   ].forEach((label) => {
+//     const th = document.createElement("th");
+//     th.textContent = label;
+//     headerRow.appendChild(th);
+//   });
 
-  personList.forEach((person) => {
-    const row = table.insertRow();
-    const values = [
-      person.name || "--",
-      person.email || "--",
-      person.gender || "--",
-      Array.isArray(person.hobbies) ? person.hobbies.join(", ") : "--",
-      person.country || "--",
-      person.state || "--",
-      person.city || "--",
-      person.timestamp || "--",
-    ];
+//   personList.forEach((person) => {
+//     const row = table.insertRow();
+//     const values = [
+//       person.name || "--",
+//       person.email || "--",
+//       person.gender || "--",
+//       Array.isArray(person.hobbies) ? person.hobbies.join(", ") : "--",
+//       person.country || "--",
+//       person.state || "--",
+//       person.city || "--",
+//       person.timestamp || "--",
+//     ];
 
-    values.forEach((value) => {
-      const cell = row.insertCell();
-      cell.textContent = value;
-    });
-  });
+//     values.forEach((value) => {
+//       const cell = row.insertCell();
+//       cell.textContent = value;
+//     });
+//   });
 
-  sortResult.appendChild(table);
-}
+//   sortResult.appendChild(table);
+// }
 
 (function initLiveSearch() {
   const sb = document.getElementById("searchbox");
@@ -379,7 +379,7 @@ function search() {
   if (!searchTerm) {
     renderTable(records);
     if (searchResult) {
-      searchResult.innerHTML = "<p>search by name</p>";
+      searchResult.innerHTML = "<p>search by Anything</p>";
     }
     return;
   }
@@ -413,7 +413,7 @@ function search() {
     searchResult.innerHTML = `<p>Showing ${filteredRecords.length} match${
       filteredRecords.length === 1 ? "" : "es"
     } for "${searchTerm}".</p>`;
-    renderSearchResults(filteredRecords);
+    renderTable(filteredRecords);
   }
 }
 
@@ -441,7 +441,7 @@ function objsorting() {
 
   if (sortResult) {
     sortResult.innerHTML = `<p>Sorted ${sortOrder.toLowerCase()} by name.</p>`;
-    renderSortResults(sortedRecords);
+    renderTable(sortedRecords);
   }
 }
 
@@ -452,5 +452,5 @@ loadData();
 
 function clearbox() {
   document.getElementById("searchbox").value = "";
-  renderSearchResults();
+  renderTable();
 }
